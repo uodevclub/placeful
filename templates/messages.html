@@ -1,5 +1,9 @@
 <ul>
 	{% for message in messages %}
-		<li>{{ message }}</li>
+		<li>
+			<p>{{ message.txt }} </p>
+			<p>{{ message.latitude }}</p>
+			<p>{{ message.longitude }}</p>
+		</li>
 	{% endfor %}
 </ul>
