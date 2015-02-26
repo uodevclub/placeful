@@ -19,6 +19,12 @@ def hello():
     latitude = request.form['latitude']
     longitude = request.form['longitude']
     timestamp = datetime.datetime.utcnow()
+
+    print("LAT " + latitude)
+    print("LONG " + longitude)
+
+    latitude = float(latitude)
+    longitude = float(longitude)
     
     message = Message(text = text, latitude = latitude, longitude = longitude, timestamp = timestamp)
     db.session.add(message)
@@ -28,12 +34,16 @@ def hello():
 
 @app.route('/messages/<latitude>/<longitude>')
 def ajax(latitude, longitude):
-    # minLat = latitude - (1/20)
-    # maxLat = latitude + (1/20)
-    # minLong = longitude - (1/20)    ## Well, I hope you weren't 
-    # maxLong = longitude + (1/20)    ## looking for a Tinder success story.
+    messages = Message.query.all()
+    print(latitude)
+    print(longitude)
+    # minLat = float(latitude) - .05
+    # maxLat = float(latitude) + .05
+    # minLong = float(longitude) - .05    ## Well, I hope you weren't 
+    # maxLong = float(longitude) + .05    ## looking for a Tinder success story.
+    # print(minLat)
+    # print(maxLat)
     # messages = Message.query.filter(minLat < latitude, maxLat > latitude, minLong < longitude, maxLong > longitude)
-    
 
     return render_template('messages.html', messages = messages)
 
