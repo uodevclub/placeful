@@ -40,6 +40,7 @@ def ajax(latitude, longitude):
     minLong = float(longitude) - .05    ## Well, I hope you weren't 
     maxLong = float(longitude) + .05    ## looking for a Tinder success story.
     messages = Message.query.filter(Message.latitude > minLat, Message.latitude < maxLat, Message.longitude > minLong, Message.longitude < maxLong)
+    messages = messages.order_by(Message.timestamp.desc())
 
     return render_template('messages.html', messages = messages)
 
