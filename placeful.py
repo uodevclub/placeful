@@ -31,6 +31,12 @@ def hello():
 def ajax(latitude, longitude):
     return 'MESSAGE'
 
+    minLat = latitude - (1/20)
+    maxLat = latitude + (1/20)
+    minLong = longitude - (1/20)    ## Well, I hope you weren't 
+    maxLong = longitude + (1/20)    ## looking for a Tinder success story.
+    messages = Message.query.filter(minLat < latitude, maxLat > latitude, minLong < longitude, maxLong > longitude)
+
 # Run the app :)
 
 ###################
