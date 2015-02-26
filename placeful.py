@@ -1,9 +1,16 @@
 from flask import Flask, render_template, request, url_for
+from flask.ext.sqlalchemy import SQLAlchemy
+
 app = Flask(__name__)
+app.config.from_object('config')
+db = SQLAlchemy(app)
+
+#### VIEWS.PY ####
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
 
 @app.route('/', methods=['POST'])
 def hello():
@@ -14,6 +21,19 @@ def hello():
     return render_template('index.html')
 
 # Run the app :)
+
+###################
+#### MODELS.PY ####
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    body = db.Column(db.String(140))
+    timestamp = db.Column(db.DateTime)
+
+    def __repr__(self):
+        return '<Post %r>' % (self.body)
+
+###################
 
 if __name__ == '__main__':
     app.run(debug = True)
