@@ -27,6 +27,10 @@ def hello():
     # save it to db
     return render_template('index.html')
 
+@app.route('/message/<latitude>/<longitude>')
+def ajax(latitude, longitude):
+    return 'MESSAGE'
+
 # Run the app :)
 
 ###################
