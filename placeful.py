@@ -10,7 +10,6 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-
 	messages = Message.query.all()
 	return render_template('index.html', messages = messages)
 
@@ -21,6 +20,7 @@ def hello():
     latitude = request.form['latitude']
     longitude = request.form['longitude']
     timestamp = datetime.datetime.utcnow()
+    
     message = Message(text = text, latitude = latitude, longitude = longitude, timestamp = timestamp)
     db.session.add(message)
     db.session.commit()
