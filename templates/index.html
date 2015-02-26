@@ -17,12 +17,20 @@
 		}
 
 		function showPosition(position) {
-			document.getElementById("latitude").value = position.coords.latitude;
-			document.getElementById("longitude").value = position.coords.longitude;
+			$("#latitude").value = position.coords.latitude;
+			$("#longitude").value = position.coords.longitude;
 		}
 
 		window.onload = getLocation();
 
+		$.ajax( "/messages/66/55", {
+			success: function(data){
+				$('#messages').append(data);
+			},
+			error: function(){
+				alert("A Derp was encountered when attempting to load the messages");
+			}
+		});
 	</script>
 </head>
 <body>
