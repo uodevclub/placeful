@@ -29,18 +29,18 @@
 		function showPosition(position) {
 			$("#latitude").val(position.coords.latitude);
 			$("#longitude").val(position.coords.longitude);
+			$.ajax( "/messages/66/55", {
+				success: function(data){
+					$('#messages').append(data);
+				},
+				error: function(){
+					// alert("A Derp was encountered when attempting to load the messages");
+				}
+			});
 		}
 
 		window.onload = getLocation();
 
-		$.ajax( "/messages/66/55", {
-			success: function(data){
-				$('#messages').append(data);
-			},
-			error: function(){
-				// alert("A Derp was encountered when attempting to load the messages");
-			}
-		});
 	</script>
 </head>
 <body>
