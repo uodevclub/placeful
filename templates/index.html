@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>placefull</title>
+    <title>placefull</title>
 	<script>
 		function getLocation() {
 		    if (navigator.geolocation) {
@@ -23,7 +23,7 @@
 </head>
 <body>
 	<p id="demo"></p>
-	<form action="/post">
+	<form action="/" method="post">
 		<input type="text" name="message" id="message">
 		<input type="submit" name="submit" id="submit" value="post message">
 		<input type="hidden" name="latitude" id="latitude">

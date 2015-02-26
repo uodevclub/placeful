@@ -1,5 +1,5 @@
 import datetime
-from flask import Flask, render_template
+from flask import Flask, render_template, request, url_for
 from flask.ext.sqlalchemy import SQLAlchemy
 
 
@@ -12,6 +12,17 @@ db = SQLAlchemy(app)
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/', methods=['POST'])
+def hello():
+    message = request.form['message']
+    latitude = request.form['latitude']
+    longitude = request.form['longitude']
+    # save it to db
+    return render_template('index.html')
+
+# Run the app :)
 
 ###################
 #### MODELS.PY ####
@@ -28,3 +39,4 @@ class Message(db.Model):
 
 if __name__ == '__main__':
     app.run(debug = True)
+
