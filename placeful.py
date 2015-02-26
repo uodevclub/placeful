@@ -1,8 +1,8 @@
 import datetime
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, send_from_directory
 from flask.ext.sqlalchemy import SQLAlchemy
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 app.config.from_object('config')
 db = SQLAlchemy(app)
 
@@ -41,6 +41,7 @@ class Message(db.Model):
 
     def __repr__(self):
         return '<Post %r>' % (self.body)
+
 
 ###################
 

@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>placefull</title>
+    <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
+    <script src="jquery/dist/jquery.min.js"></script>
+    <script src="bootstrap/dist/js/bootstrap.min.js"></script>
 	<script>
 		function getLocation() {
 		    if (navigator.geolocation) {
@@ -22,21 +26,24 @@
 	</script>
 </head>
 <body>
-	<p id="demo"></p>
-	<form action="/" method="post">
-		<input type="text" name="text" id="text">
-		<input type="submit" name="submit" id="submit" value="post message">
-		<input type="hidden" name="latitude" id="latitude">
-		<input type="hidden" name="longitude" id="longitude">
-	</form>
+	<div class="container">
+		<section class="row">
+			<form action="/" method="post">
+			<input type="text" name="text" id="text">
+			<input type="submit" name="submit" id="submit" value="post message">
+			<input type="hidden" name="latitude" id="latitude">
+			<input type="hidden" name="longitude" id="longitude">
+		</form>
+		</section>
 
-	<section>
-		<ul id="messages">
-			<li>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ipsum quasi alias eligendi, vitae et tenetur dolorum voluptatibus, saepe facere, a porro veritatis dolorem iure fuga commodi facilis blanditiis eveniet.</p>
-				<small>location:portland, OR</small>
-			</li>
-		</ul>
-	</section>
+		<section class="row">
+			<ul id="messages">
+				<li>
+					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ipsum quasi alias eligendi, vitae et tenetur dolorum voluptatibus, saepe facere, a porro veritatis dolorem iure fuga commodi facilis blanditiis eveniet.</p>
+					<small>location:portland, OR</small>
+				</li>
+			</ul>
+		</section>
+	</div>
 </body>
 </html>
