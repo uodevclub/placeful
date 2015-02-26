@@ -10,8 +10,9 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-    messages = Message.query.all()
-    return render_template('index.html', messages = messages)
+
+	messages = Message.query.all()
+	return render_template('index.html', messages = messages)
 
 
 @app.route('/', methods=['POST'])
@@ -20,16 +21,15 @@ def hello():
     latitude = request.form['latitude']
     longitude = request.form['longitude']
     timestamp = datetime.datetime.utcnow()
-
     message = Message(text = text, latitude = latitude, longitude = longitude, timestamp = timestamp)
     db.session.add(message)
     db.session.commit()
     # save it to db
     return render_template('index.html')
 
-@app.route('/message/<latitude>/<longitude>')
+@app.route('/messages/<latitude>/<longitude>')
 def ajax(latitude, longitude):
-    return 'MESSAGE'
+    return render_template('messages.html')
 
     minLat = latitude - (1/20)
     maxLat = latitude + (1/20)
