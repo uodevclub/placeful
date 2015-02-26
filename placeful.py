@@ -1,5 +1,7 @@
+import datetime
 from flask import Flask, render_template
 from flask.ext.sqlalchemy import SQLAlchemy
+
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -14,7 +16,7 @@ def index():
 ###################
 #### MODELS.PY ####
 
-class Post(db.Model):
+class Message(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     body = db.Column(db.String(140))
     timestamp = db.Column(db.DateTime)
