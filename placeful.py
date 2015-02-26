@@ -10,7 +10,8 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    messages = Message.query.all()
+    return render_template('index.html', messages = messages)
 
 
 @app.route('/', methods=['POST'])
