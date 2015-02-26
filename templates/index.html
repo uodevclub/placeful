@@ -3,8 +3,40 @@
 <head>
 	<meta charset="UTF-8">
 	<title>placefull</title>
+	<script>
+		function getLocation() {
+		    if (navigator.geolocation) {
+		        navigator.geolocation.getCurrentPosition(showPosition);
+		    } else { 
+		        alert("Geolocation is not supported by this browser.");
+		    }
+		}
+
+		function showPosition(position) {
+			document.getElementById("latitude").value = position.coords.latitude;
+			document.getElementById("longitude").value = position.coords.longitude;
+		}
+
+		window.onload = getLocation();
+
+	</script>
 </head>
 <body>
-	<form action="/post"></form>
+	<p id="demo"></p>
+	<form action="/post">
+		<input type="text" name="message" id="message">
+		<input type="submit" name="submit" id="submit" value="post message">
+		<input type="hidden" name="latitude" id="latitude">
+		<input type="hidden" name="longitude" id="longitude">
+	</form>
+
+	<section>
+		<ul id="messages">
+			<li>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ratione ipsum quasi alias eligendi, vitae et tenetur dolorum voluptatibus, saepe facere, a porro veritatis dolorem iure fuga commodi facilis blanditiis eveniet.</p>
+				<small>location:portland, OR</small>
+			</li>
+		</ul>
+	</section>
 </body>
 </html>
