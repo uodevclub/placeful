@@ -29,7 +29,8 @@
 		function showPosition(position) {
 			$("#latitude").val(position.coords.latitude);
 			$("#longitude").val(position.coords.longitude);
-			$.ajax( "/messages/66/55", {
+			
+			$.ajax( "/messages/"+ position.coords.latitude + "/" + position.coords.longitude, {
 				success: function(data){
 					$('#messages').append(data);
 				},
@@ -45,7 +46,7 @@
 </head>
 <body>
 	<div class="container">
-		<section class="row">
+		<section id="form" class="row">
 			<form action="/" method="post" class="form-inline">
 			<input type="text" name="text" id="text" class="form-control">
 			<input type="submit" name="submit" id="submit" value="post message" class="btn btn-primary">
