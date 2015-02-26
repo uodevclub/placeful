@@ -10,9 +10,7 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-
-	messages = Message.query.all()
-	return render_template('index.html', messages = messages)
+	return render_template('index.html')
 
 
 @app.route('/', methods=['POST'])
@@ -29,7 +27,8 @@ def hello():
 
 @app.route('/messages/<latitude>/<longitude>')
 def ajax(latitude, longitude):
-    return render_template('messages.html')
+	messages = Message.query.all()
+    return render_template('messages.html', messages = messages)
 
 # Run the app :)
 
