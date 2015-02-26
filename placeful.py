@@ -28,7 +28,7 @@ def hello():
 @app.route('/messages/<latitude>/<longitude>')
 def ajax(latitude, longitude):
 	messages = Message.query.all()
-    return render_template('messages.html', messages = messages)
+    return render_template('messages.html', messages)
 
 # Run the app :)
 
