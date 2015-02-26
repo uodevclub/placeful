@@ -73,6 +73,12 @@
     		position:relative; 
     		top:-6.5rem;
     	}
+    	#messages img{
+    		margin:auto;
+    		width:20px;
+    		display: inherit;
+    		margin-top: 4rem;
+    	}
     </style>
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
@@ -110,7 +116,7 @@
 			console.log('c');
 			$.ajax( "/messages/"+ position.coords.latitude + "/" + position.coords.longitude, {
 				success: function(data){
-					$('#messages').append(data);
+					$('#messages').html(data);
 				},
 				error: function(){
 					alert("A Derp was encountered when attempting to load the messages");
@@ -159,6 +165,7 @@
 				<a href="/" id="reset">update</a>
 			</p>
 			<ul id="messages">
+				<img src="http://blue200.com/img/template/spinner.gif" alt="">
 			</ul>
 		</section>
 	</div>
