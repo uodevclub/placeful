@@ -1,0 +1,6 @@
+{% for message in messages %}
+	<li>
+		<p>"{{ message.text }}"</p>
+		<small>{{message.timestamp.strftime('%m/%d %I:%M')}}</small>
+	</li>
+{% endfor %}
