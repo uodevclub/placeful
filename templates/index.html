@@ -4,11 +4,13 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>placefull</title>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.min.css">
     <style>
 	    .container{
 	    	max-width: 900px;
 	    	/*margin:0 2rem;*/
+	    	font-family: 'Roboto', sans-serif;
 	    	
 	    }
 	    .row{
@@ -18,36 +20,85 @@
     		padding:4rem 1rem;
     	}
     	#messages{
-    		/*background: red;*/
     		list-style-type: none;
     		padding-left:0px;
-    		padding-top:2rem;
     	}
     	#messages li{
-    		padding: 1rem;
-    		background:rgba(0,0,0,.05);
+    		padding: 1rem 3rem;
+    		background:rgba(0,0,0,.025);
     		border-bottom:1px solid rgba(0,0,0,.1);
     		line-height: 6rem;
+    	}
+    	#messages li:hover{
+			background: rgba(0,0,0,.05);
     	}
     	#messages input[type="submit"]{
 			float: right;
     	}
+    	.msg-header{
+    		padding: 1.5rem 1rem;
+    		background:rgba(0,0,0,.05);
+    		border-bottom:1px solid rgba(0,0,0,.1);
+    		margin-bottom: 0px !important;
+    	}
+    	header{
+			background:#03a9f4;
+			color:white;
+			padding-bottom: 4rem !important; 
+    	}
+    	header h1{
+    		font-weight: 400;
+    		/*letter-spacing: .5rem;*/
+    		text-transform: capitalize;
+    	}
+    	header img{
+			display: inline-block;
+			width: 50px;
+			position: relative;
+			top:-.4rem;
+			margin-right:1rem;
+    	}
+    	header p{
+    		font-weight: 300;
+    		/*letter-spacing: .15rem;*/
+    	}
+    	input[type="submit"]{
+    		background:#3F51B5;
+    	}
+    	input[type="submit"]:hover{
+    		background: #3949AB;
+    	}
+    	#messages small{
+    		float:right; 
+    		position:relative; 
+    		top:-6.5rem;
+    	}
     </style>
     <script src="jquery/dist/jquery.min.js"></script>
     <script src="bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="cookie.js"></script>
 	<script>
+		position = {coords:{latitude: "", longitude: ""} };
 		function getLocation() {
 			console.log('a');
-		    if (navigator.geolocation) {
-		        navigator.geolocation.getCurrentPosition(updatePosition);
-		    } else { 
-		        alert("Geolocation is not supported by this browser.");
-		    }
+			if(getCookie('latitude') && getCookie('longitude')){
+				position.coords.latitude = getCookie('latitude');
+				position.coords.longitude = getCookie('longitude');
+				updatePosition(position)
+			}else{
+				if (navigator.geolocation) {
+		        	navigator.geolocation.getCurrentPosition(updatePosition);
+		   		} else { 
+		        	alert("Geolocation is not supported by this browser.");
+		    	}
+			}
 		}
 
 		function updatePosition(position) {
 			console.log('b');
 			loadMessages(position);
+			setCookie('latitude', position.coords.latitude, .5);
+			setCookie('longitude', position.coords.longitude, .5);
 
 			$(function(){
 				$("#latitude").val(position.coords.latitude);
@@ -66,17 +117,29 @@
 				}
 			});
 		}
+
+		$(function(){
+			$('#reset').click(function(event){
+				deleteCookie('latitude');
+				deleteCookie('longitude');
+			})
+		});
 		getLocation();
+		
 	</script>
 </head>
 <body>
-	<div class="container">
-		<div class="row">
+	<header class="row" >
+		<div class="container">
 			<br>
 			<br>
-			<h1>placeful</h1>
-			<p>Placeful is an anonymized, location-based message platform for your world to enjoy.</p>
+			<h1>
+			<img src="http://www2.psd100.com/ppp/2013/10/0401/Chat-icon-1004132612.png" alt="">placeful</h1>
+			<p>Placeful is an anonymized, location-based message platform. Play nice.</p>
 		</div>
+	</header>
+	<div class="container">
+		
 		<section id="message-form" class="row">
 			<form action="/" method="post" class="form-inline">
 			<input type="submit" name="submit" id="submit" value="post message" class="btn btn-primary" style="float: right">
@@ -89,16 +152,13 @@
 			<input type="hidden" name="longitude" id="longitude">
 		</form>
 		</section>
-
+		
 		<section class="row">
+			<p class="msg-header">
+				displaying messages posted within approx 6miles of your current location 
+				<a href="/" id="reset">update</a>
+			</p>
 			<ul id="messages">
-				<li>
-					<p>12345 </p>
-				</li>
-				<li>
-					<p>12345 </p>
-				</li>
-
 			</ul>
 		</section>
 	</div>
