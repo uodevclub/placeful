@@ -10,8 +10,7 @@ db = SQLAlchemy(app)
 
 @app.route('/')
 def index():
-	messages = Message.query.all()
-	return render_template('index.html', messages = messages)
+	return render_template('index.html')
 
 
 @app.route('/', methods=['POST'])
@@ -29,13 +28,13 @@ def hello():
 
 @app.route('/messages/<latitude>/<longitude>')
 def ajax(latitude, longitude):
-    return render_template('messages.html')
-
     minLat = latitude - (1/20)
     maxLat = latitude + (1/20)
     minLong = longitude - (1/20)    ## Well, I hope you weren't 
     maxLong = longitude + (1/20)    ## looking for a Tinder success story.
     messages = Message.query.filter(minLat < latitude, maxLat > latitude, minLong < longitude, maxLong > longitude)
+
+    return render_template('messages.html', messages = messages)
 
 # Run the app :)
 
