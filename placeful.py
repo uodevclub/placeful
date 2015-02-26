@@ -34,16 +34,12 @@ def hello():
 
 @app.route('/messages/<latitude>/<longitude>')
 def ajax(latitude, longitude):
-    messages = Message.query.all()
-    print(latitude)
-    print(longitude)
-    # minLat = float(latitude) - .05
-    # maxLat = float(latitude) + .05
-    # minLong = float(longitude) - .05    ## Well, I hope you weren't 
-    # maxLong = float(longitude) + .05    ## looking for a Tinder success story.
-    # print(minLat)
-    # print(maxLat)
-    # messages = Message.query.filter(minLat < latitude, maxLat > latitude, minLong < longitude, maxLong > longitude)
+    # messages = Message.query.all()
+    minLat = float(latitude) - .05
+    maxLat = float(latitude) + .05
+    minLong = float(longitude) - .05    ## Well, I hope you weren't 
+    maxLong = float(longitude) + .05    ## looking for a Tinder success story.
+    messages = Message.query.filter(Message.latitude > minLat, Message.latitude < maxLat, Message.longitude > minLong, Message.longitude < maxLong)
 
     return render_template('messages.html', messages = messages)
 
