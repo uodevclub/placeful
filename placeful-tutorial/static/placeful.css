@@ -1,0 +1,82 @@
+
+      body{
+        background:#F9F9F9;
+      }
+      .container{
+        max-width: 900px;
+        /*margin:0 2rem;*/
+        font-family: 'Roboto', sans-serif;
+        
+      }
+      .row{
+        padding: 0 1rem;
+      }
+      #message-form{
+        padding:4rem 1rem;
+      }
+      #messages{
+        list-style-type: none;
+        padding-left:0px;
+      }
+      #messages li{
+        padding: 1rem 3rem;
+        background:rgba(255,255,255,.8);
+        border-bottom:1px solid rgba(0,0,0,.1);
+        line-height: 6rem;
+        color:rgba(0,0,0,.7);
+      }
+      #messages li:hover{
+      color:rgba(0,0,0,1);
+      background:rgba(255,255,255,1);
+      }
+      #messages input[type="submit"]{
+      float: right;
+      }
+      .msg-header{
+        padding: 1.5rem 1rem;
+        background:rgb(255,255,255);
+        border:1px solid rgba(0,0,0,.1);
+        margin-bottom: 0px !important;
+        color:rgba(0,0,0,.8);
+        z-index: 200;
+      }
+      header{
+      background:#03a9f4;
+      color:white;
+      padding-bottom: 4rem !important; 
+      }
+      header h1{
+        font-weight: 400;
+        /*letter-spacing: .5rem;*/
+        text-transform: capitalize;
+      }
+      header img{
+      display: inline-block;
+      width: 50px;
+      position: relative;
+      top:-.4rem;
+      margin-right:1rem;
+      }
+      header p{
+        font-weight: 300;
+        /*letter-spacing: .15rem;*/
+      }
+      input[type="submit"]{
+        background:#3F51B5;
+        text-transform: uppercase;
+        font-weight: 300;
+      }
+      input[type="submit"]:hover{
+        background: #3949AB;
+      }
+      #messages small{
+        float:right; 
+        position:relative; 
+        top:-6.5rem;
+      }
+      #messages img{
+        margin:auto;
+        width:20px;
+        display: inherit;
+        margin-top: 4rem;
+      }

@@ -2,5 +2,7 @@
 Placeful is an anonymized, location-based message platform for your world to enjoy.
 
 
-### Installing
-    pip install -r requirements.txt
+### Installing depencencies
+Assuming you already have pip from last meeting, navigate to placeful/placeful-tutorial and run the following:
+
+    sudo pip install -r requirements.txt

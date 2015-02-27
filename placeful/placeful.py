@@ -1,12 +1,13 @@
 #### SETUP ####
-
+## Import statements: they're pretty standard with Python. They allow us to use code from Flask
+## and other packages that aren't directly in this file.
 import datetime
 from flask import Flask, render_template, request, url_for, send_from_directory
 from flask.ext.sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, static_url_path='')
-app.config.from_object('config')
-db = SQLAlchemy(app)
+app.config.from_object('config')        ## Configuration file.
+db = SQLAlchemy(app)                    ## Attaches SQLAlchemy to our database.
 
 ###############
 #### VIEWS ####
